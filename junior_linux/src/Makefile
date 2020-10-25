@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g
-PROGS = naughty_proc divide_zero null_ptr
+PROGS = naughty_proc divide_zero null_ptr double_free
 
 all: clean $(PROGS)
 
