@@ -37,7 +37,19 @@
 
 ## Linux 环境初级编程
 
-### 启动
+### Linux 开机引导和启动过程
+
+1. BIOS
+    - 上电自检（Power-On Self Test, POST)。检测CPU各寄存器、计时芯片、中断芯片、DMA 控制器等。
+    - 枚举设备。初始化寄存器，分配中断、IO 端口、DMA 资源等。
+    - 读取主引导扇区并执行。
+
+2. Boot loader（以GRUB为例）
+    - 提供BOOT启动菜单，允许用户选择加载哪个操作系统。
+    - 将指定的操作系统内核加载到内存并执行。
+
+3. 内核
+    - 内核初始化
 
 ### 进程
 
@@ -121,4 +133,3 @@
 1. [UNIX传奇（上篇）](https://coolshell.cn/articles/2322.html)
 2. [UNIX传奇（下篇）](https://coolshell.cn/articles/2324.html)
 3. [UNIX 40年：昨天，今天和明天](https://coolshell.cn/articles/1023.html)
-4. [UEFI 引导与 传统BIOS 引导在原理上有什么区别？芯片公司在其中扮演什么角色？](https://zhuanlan.zhihu.com/p/81960137)
