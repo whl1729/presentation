@@ -1,21 +1,38 @@
-# Linux 环境初级编程
+# Linux 启动流程
 
-## 操作系统是什么
+## 目录
+
+1. Linux 系统概述
+    - 操作系统是什么
+    - 操作系统包含哪些部分
+    - Linux 简史
+
+2. Linux 启动流程概述
+    - UEFI
+    - Boot Loader
+    - Kernel
+
+3. UEFI
+4. Boot Loader
+5. Kernel
+
+## Linux 系统概述
+
+### 操作系统是什么
 
 1. 操作系统是大型的、复杂的和长寿命的程序。
 2. 操作系统主要执行两个任务：
     - 提供接口。隐藏硬件，为程序员提供方便的接口——系统调用。
     - 管理资源。管理处理器、存储器、I/O接口设备等。
 
-## 操作系统包含哪些部分
+### 操作系统包含哪些部分
 
 - 进程管理
 - 存储管理
 - 文件系统
 - I/O
+- 设备管理
 - 安全
-
-## Unix/Linux 简史
 
 ### Unix/Linux 简史（正经篇）
 
@@ -35,14 +52,12 @@
 - 1991年，当Linus Torvalds写出Linux的第一个版本时，他还在芬兰的赫尔辛基大学读书，年仅22岁。
 - 2005年，由于Linux内核社区不能够继续免费使用BitKeeper（一个分布式版本控制系统），Linus Torvalds在两周内开发出Git的最初版本。
 
-## Linux 环境初级编程
+## Linux 启动流程概述
 
-### Linux 开机引导和启动过程
-
-1. BIOS
+1. UEFI
     - 上电自检（Power-On Self Test, POST)。检测CPU各寄存器、计时芯片、中断芯片、DMA 控制器等。
     - 枚举设备。初始化寄存器，分配中断、IO 端口、DMA 资源等。
-    - 读取主引导扇区并执行。
+    - 加载Boot loader到内存并执行。
 
 2. Boot loader（以GRUB为例）
     - 提供BOOT启动菜单，允许用户选择加载哪个操作系统。
@@ -51,6 +66,39 @@
 3. 内核
     - 内核引导
     - 内核初始化
+
+## UEFI
+
+### UEFI 启动流程
+
+1. Security Phase (SEC): 初始化临时内存（Cache As RAM）
+2. Pre-EFI Initialization (PEI): 初始化CPU、芯片组、主存、Board
+3. Driver Execution Environment (DXE): 初始化硬件驱动、总线
+4. Boot Device Select (BDS): 初始化I/O设备、提供设置和选择启动设备的UI
+5. Transient System Load (TSL): 加载boot loader 并运行
+6. Runtime (RT): boot loader 加载内核并运行
+
+![uefi_boot_flow](images/uefi_boot_flow.jpg)
+
+### GUID Partition Table (GPT)
+
+1. 寻址方式：逻辑区块地址（Logical Block Address, LBA）
+2. GPT分配64 bits给逻辑区块地址，最大分区数为（2^64 -1），若扇区大小为512 bytes，则总大小为(9.4 * 10^21) bytes.
+3. 为减少分区表损坏的风险，GPT在硬盘最后保存了一份分区表的副本。
+
+![gpt_scheme](images/GUID_Partition_Table_Scheme.png)
+
+### GPT 分区表头
+
+![gpt_header_format](images/gpt_header_format.png)
+
+### GPT 分区表项
+
+![gpt_entry_format](images/gpt_entry_format.png)
+
+## Boot Loader
+
+## Kernel
 
 ### 进程
 
