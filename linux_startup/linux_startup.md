@@ -8,17 +8,15 @@
     - Linux 简史
 
 2. Linux 启动流程概述
-    - 系统固件（UEFI）
-    - Boot Loader
-    - 内核引导
-    - 内核初始化
-    - 用户态初始化
+    - UEFI
+    - Boot loader
+    - Kernel
+    - Init process
 
-3. 系统固件（UEFI）
-4. Boot Loader
-5. 内核引导
-6. 内核初始化
-7. 用户态初始化
+3. UEFI
+4. Boot loader
+5. Kernel
+6. Init process
 
 ## Linux 系统概述
 
@@ -58,7 +56,7 @@
 
 ## Linux 启动流程概述
 
-1. 系统固件（UEFI）
+1. UEFI
     - 上电自检（Power-On Self Test, POST)。检测CPU各寄存器、计时芯片、中断芯片、DMA 控制器等。
     - 初始化硬件。初始化寄存器，分配中断、IO 端口、DMA 资源等。
     - 加载Boot loader到内存并执行。
@@ -67,12 +65,10 @@
     - 提供BOOT启动菜单，允许用户选择加载哪个操作系统。
     - 将指定的操作系统内核加载到内存并执行。
 
-3. 内核引导
+3. Kernel
     - 内核解压
 
-4. 内核初始化
-
-5. 用户态初始化
+4. Init process
 
 ## UEFI
 
@@ -114,7 +110,7 @@
 2. 加载linux内核可执行文件`vmlinuz`
 3. 加载initial ramdisk
 
-## Kernel loading
+## Kernel
 
 ### 进程
 
